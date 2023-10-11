@@ -1,5 +1,6 @@
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
+import 'package:team_harpoon_breakout/screens/game_screen.dart';
 
 import 'screens/menu.dart';
 import 'screens/splash.dart';
@@ -24,6 +25,7 @@ class BreakoutGame extends StatelessWidget {
       routes: {
         Splash.route: (context) => const Splash(),
         Menu.route: (context) => const Menu(),
+        GameScreen.route: (context) => const GameScreen(),
       },
     );
   }
