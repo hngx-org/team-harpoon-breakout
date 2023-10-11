@@ -1,0 +1,44 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "level-01.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "breakout.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "level-01.tmx": {
+            "scale": 1.3953125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 184.1881298992161,
+                "y": 320.3583426651735
+            }
+        }
+    },
+    "last.imagePath": "C:/Users/Maverick/Projects/HNGiX/Mobile/team_harpoon_breakout/assets/images/Terrain",
+    "map.height": 40,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 23,
+    "openFiles": [
+        "breakout.tsx",
+        "level-01.tmx"
+    ],
+    "project": "breakout.tiled-project",
+    "recentFiles": [
+        "breakout.tsx",
+        "level-01.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
