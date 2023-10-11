@@ -16,7 +16,18 @@ void startGame(
   });
 }
 
-void updateDirection(WidgetRef ref) {}
+void updateDirection(WidgetRef ref) {
+  var ballYState = ref.read(ballY.notifier).state;
+
+  if (ballYState >= 0.9) {
+    Timer.periodic(const Duration(seconds: 3), (timer) {
+      print(ballYState);
+    });
+    ref.read(ballDirection.notifier).state = Direction.down;
+  } else if (ballYState <= -0.9) {
+    ref.read(ballDirection.notifier).state = Direction.up;
+  }
+}
 
 void moveBall(WidgetRef ref) {
   final ball = ref.read(ballDirection.notifier).state;
