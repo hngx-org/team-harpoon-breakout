@@ -45,19 +45,19 @@ class Menu extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.5,
             ),
-            Container(
-              padding: const EdgeInsets.all(5),
-              margin: const EdgeInsets.only(bottom: 20),
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    width: 2,
-                    color: Colors.white,
+            GestureDetector(
+              onTap: () => Navigator.of(context).pushNamed(GameScreen.route),
+              child: Container(
+                padding: const EdgeInsets.all(5),
+                margin: const EdgeInsets.only(bottom: 20),
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 2,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-              child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, GameScreen.route),
                 child: const Text(
                   'Play Now',
                   style: TextStyle(

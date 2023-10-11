@@ -42,8 +42,16 @@ class _GameScreenState extends ConsumerState<GameScreen> {
       child: GestureDetector(
         onTap: () => startGame(ref),
         child: Scaffold(
-            backgroundColor: Colors.green[200],
-            body: Stack(
+          body: Container(
+            width: double.maxFinite,
+            height: double.maxFinite,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/Space Background.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Stack(
               children: [
                 // Start game
                 PlayScreen(hasGameInitiated: hasGameStarted),
@@ -75,7 +83,9 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                   ),
                 )
               ],
-            )),
+            ),
+          ),
+        ),
       ),
     );
   }
