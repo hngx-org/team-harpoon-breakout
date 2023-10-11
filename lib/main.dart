@@ -1,7 +1,8 @@
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
-import 'package:team_harpoon_breakout/screens/game_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'screens/game_screen.dart';
 import 'screens/menu.dart';
 import 'screens/splash.dart';
 
@@ -10,7 +11,9 @@ void main() {
   Flame.device.fullScreen();
 
   // Breakout game = Breakout();
-  runApp(const BreakoutGame());
+  runApp(const ProviderScope(
+    child: BreakoutGame(),
+  ));
 }
 
 class BreakoutGame extends StatelessWidget {

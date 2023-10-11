@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:team_harpoon_breakout/screens/game_screen.dart';
 
 class Menu extends StatelessWidget {
   static String route = '/';
@@ -44,23 +45,26 @@ class Menu extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.5,
             ),
-            Container(
-              padding: const EdgeInsets.all(5),
-              margin: const EdgeInsets.only(bottom: 20),
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    width: 2,
-                    color: Colors.white,
+            GestureDetector(
+              onTap: () => Navigator.of(context).pushNamed(GameScreen.route),
+              child: Container(
+                padding: const EdgeInsets.all(5),
+                margin: const EdgeInsets.only(bottom: 20),
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 2,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-              child: const Text(
-                'Play Now',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w300,
-                  color: Colors.white,
+                child: const Text(
+                  'Play Now',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

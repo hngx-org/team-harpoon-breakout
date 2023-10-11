@@ -55,9 +55,10 @@ class PlayScreen extends ConsumerWidget {
             child: const Text(
               'Tap to start',
               style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold),
+                color: Colors.white,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           );
   }
