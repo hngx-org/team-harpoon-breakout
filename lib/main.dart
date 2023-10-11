@@ -1,8 +1,6 @@
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'screens/game_screen.dart';
 import 'screens/menu.dart';
 import 'screens/splash.dart';
