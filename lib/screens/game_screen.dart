@@ -53,10 +53,10 @@ class _GameScreenState extends ConsumerState<GameScreen> {
           moveRight(ref);
         }
       },
-      child: Scaffold(
-        body: GestureDetector(
-          onTap: () => startGame(ref),
-          child: Container(
+      child: GestureDetector(
+        onTap: () => startGame(ref),
+        child: Scaffold(
+          body: Container(
             width: double.maxFinite,
             height: double.maxFinite,
             decoration: const BoxDecoration(

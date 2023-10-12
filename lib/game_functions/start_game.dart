@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:team_harpoon_breakout/audio/game_audio.dart';
 import 'package:team_harpoon_breakout/provider/game_states.dart';
 
 // callback to start the game
@@ -18,6 +19,7 @@ void startGame(
       timer.cancel();
 
       ref.read(isGameOver.notifier).state = true;
+      GameAudio.gameEnd();
       resetGame(ref);
     }
 

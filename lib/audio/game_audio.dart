@@ -25,7 +25,7 @@ class GameAudio extends FlameGame with TapDetector {
   //   super.render(canvas);
   // }
 
-  // Implement your game logic to detect when the game ends, and call this method
+  /// Implement your game logic to detect when the game ends, and call this method
   static void gameEnd() {
     // Stop the background music
     FlameAudio.bgm.stop();
