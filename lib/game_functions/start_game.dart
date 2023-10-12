@@ -73,12 +73,13 @@ void updateDirection(WidgetRef ref) {
 
 void moveBall(WidgetRef ref) {
   final ballDirectionY = ref.read(ballYDirection.notifier).state;
-  final ballDirectionX = ref.read(ballYDirection.notifier).state;
+  final ballDirectionX = ref.read(ballXDirection.notifier).state;
   final incrementBrickX = ref.read(brickXIncrement.notifier).state;
   final incrementBrickY = ref.read(brickYIncrement.notifier).state;
   //move horinzontally
   if (ballDirectionX == Direction.left) {
     ref.read(ballX.notifier).state -= incrementBrickX;
+  
   } else if (ballDirectionX == Direction.right) {
     ref.read(ballX.notifier).state += incrementBrickX;
   }

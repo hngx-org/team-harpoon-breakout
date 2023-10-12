@@ -10,10 +10,10 @@ final ballY = StateProvider<double>((ref) => 0.0);
 final hasGameInitiated = StateProvider<bool>((ref) => false);
 
 /// Player position X
-final playerPositionX = StateProvider<double>((ref) => 0.0);
+final playerPositionX = StateProvider<double>((ref) => -0.2);
 
 /// Player width
-final playerWidth = StateProvider<double>((ref) => 0.3);
+final playerWidth = StateProvider<double>((ref) => 0.4);
 
 ///GameStatus
 final isGameOver = StateProvider<bool>((ref) => false);
@@ -33,4 +33,4 @@ final brickYIncrement = StateProvider<double>((ref) => 0.01);
 enum Direction { up, down, left, right }
 
 final ballYDirection = StateProvider<Direction>((ref) => Direction.down);
-final ballXDirection = StateProvider<Direction>((ref) => Direction.up);
+final ballXDirection = StateProvider<Direction>((ref) => Direction.down);
