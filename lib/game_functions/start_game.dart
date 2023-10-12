@@ -11,30 +11,83 @@ void startGame(
   ref.read(hasGameInitiated.notifier).state = true;
   Timer.periodic(const Duration(milliseconds: 10), (timer) {
     // ref.read(ballY.notifier).state -= 0.0001;
-    moveBall(ref);
     updateDirection(ref);
+    moveBall(ref);
+    //Check if game is over
+    if (isPlayerDead(ref)) {
+      timer.cancel();
+      ref.read(isGameOver.notifier).state = true;
+    }
+    checkBricksBroken(ref);
   });
+}
+
+void checkBricksBroken(WidgetRef ref) {
+  var ballYState = ref.read(ballY.notifier).state;
+  final ballXState = ref.read(ballX.notifier).state;
+  final brickXState = ref.read(brickX.notifier).state;
+  final brickYState = ref.read(brickY.notifier).state;
+  final brickH = ref.read(brickHeight.notifier).state;
+  final brickW = ref.read(brickWidth.notifier).state;
+  if (ballXState >= brickXState &&
+      ballXState <= brickXState + brickW &&
+      ballYState >= brickYState &&
+      ballYState <= brickYState + brickH &&
+      ref.watch(brickBroken) == false) {
+    ref.read(brickBroken.notifier).state = true;
+    ref.read(ballYDirection.notifier).state = Direction.down;
+  }
+}
+
+bool isPlayerDead(WidgetRef ref) {
+  final ballYState = ref.read(ballY.notifier).state;
+  if (ballYState >= 1) {
+    return true;
+  }
+
+  return false;
 }
 
 void updateDirection(WidgetRef ref) {
   var ballYState = ref.read(ballY.notifier).state;
+  final ballXState = ref.read(ballX.notifier).state;
+  final playerX = ref.read(playerPositionX.notifier).state;
+  final playerWidthState = ref.read(playerWidth.notifier).state;
 
-  if (ballYState >= 0.9) {
-    Timer.periodic(const Duration(seconds: 3), (timer) {
-      print(ballYState);
-    });
-    ref.read(ballDirection.notifier).state = Direction.down;
-  } else if (ballYState <= -0.9) {
-    ref.read(ballDirection.notifier).state = Direction.up;
+  //ball moves up when it hits the player
+  if (ballYState >= 0.9 && ballXState >= playerX && ballXState <= playerX + playerWidthState) {
+    ref.read(ballYDirection.notifier).state = Direction.up;
+    //down when it hits the top of the screen
+  } else if (ballYState <= -1) {
+    ref.read(ballYDirection.notifier).state = Direction.down;
+  }
+
+  //ball moves left when it hits the wall
+  if (ballXState >= 1) {
+    ref.read(ballXDirection.notifier).state = Direction.left;
+    //ball moves right when it hits the wall
+  } else if (ballXState <= -1) {
+    ref.read(ballXDirection.notifier).state = Direction.right;
   }
 }
 
 void moveBall(WidgetRef ref) {
-  final ball = ref.read(ballDirection.notifier).state;
-  if (ball == Direction.down) {
-    ref.read(ballY.notifier).state += 0.01;
-  } else {
-    ref.read(ballY.notifier).state -= 0.01;
+  final ballDirectionY = ref.read(ballYDirection.notifier).state;
+  final ballDirectionX = ref.read(ballYDirection.notifier).state;
+  final incrementBrickX = ref.read(brickXIncrement.notifier).state;
+  final incrementBrickY = ref.read(brickYIncrement.notifier).state;
+  //move horinzontally
+  if (ballDirectionX == Direction.left) {
+    ref.read(ballX.notifier).state -= incrementBrickX;
+  } else if (ballDirectionX == Direction.right) {
+    ref.read(ballX.notifier).state += incrementBrickX;
+  }
+
+  //move vertically
+  if (ballDirectionY == Direction.down) {
+    ref.read(ballY.notifier).state += incrementBrickY;
+  } else if (ballDirectionY == Direction.up) {
+    ref.read(ballY.notifier).state -= incrementBrickY;
   }
 }
 
