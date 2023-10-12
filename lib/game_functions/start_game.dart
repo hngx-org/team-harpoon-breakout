@@ -31,12 +31,77 @@ void checkBricksBroken(WidgetRef ref) {
   final brickW = ref.read(brickWidth.notifier).state;
   final myBrick = ref.watch(myBricksProvider);
   for (int i = 0; i < myBrick.length; i++) {
-    if (ballXState >= myBrick[i][0] && ballXState <= myBrick[i][0] 
-    + brickW && ballYState <= myBrick[i][1] + brickH && myBrick[i][2] == false) {
+    if (ballXState >= myBrick[i][0] && ballXState <= myBrick[i][0] + brickW && ballYState <= myBrick[i][1] + brickH && myBrick[i][2] == false) {
       myBrick[i][2] = true;
-      ref.read(ballYDirection.notifier).state = Direction.down;
+      //since brick is broken, update direction of ball
+      //based on which side the brick it hit
+      //to achieve this, we calculate the distance of the ball from each of the four sides
+      //the smallest distance is the side the ball has it
+
+      ref.read(leftsideDist.notifier).state = ((myBrick[i][0] as double) - (ballXState)).abs();
+      ref.read(rightsideDist.notifier).state = (((myBrick[i][0] + brickW) as double) - ballXState).abs();
+      ref.read(topsideDist.notifier).state = ((myBrick[i][1] as double) - ballYState).abs();
+      ref.read(bottomsideDist.notifier).state = ((myBrick[i][1] as double) + brickH - ballYState).abs();
+      String min = findMin(
+        ref.read(leftsideDist.notifier).state,
+        ref.read(rightsideDist.notifier).state,
+        ref.read(topsideDist.notifier).state,
+        ref.read(bottomsideDist.notifier).state,
+      );
+
+      switch (min) {
+        case "left":
+          ref.read(ballXDirection.notifier).state = Direction.left;
+          break;
+        case "right":
+          ref.read(ballXDirection.notifier).state = Direction.right;
+          break;
+        case "up":
+          ref.read(ballYDirection.notifier).state = Direction.up;
+          break;
+        case "down":
+          ref.read(ballYDirection.notifier).state = Direction.down;
+          break;
+        default:
+      }
     }
   }
+}
+
+//returns the smallest side
+String findMin(double a, double b, double c, double d) {
+  List<double> myList = [
+    a,
+    b,
+    c,
+    d,
+  ];
+  double currentMin = 0;
+  for (int i = 0; i < myList.length; i++) {
+    if (myList[i] < currentMin) {
+      currentMin = myList[i];
+    }
+  }
+  if ((currentMin - a).abs() < 0.01) {
+    return "left";
+  } else if ((currentMin - b).abs() < 0.01) {
+    return "right";
+  } else if ((currentMin - c).abs() < 0.01) {
+    return "up";
+  } else if ((currentMin - d).abs() < 0.01) {
+    return "down";
+  }
+  return "";
+}
+
+//reset game
+void resetGame(WidgetRef ref) {
+  ref.read(playerPositionX.notifier).state = -0.2;
+  ref.read(ballX.notifier).state = 0;
+  ref.read(ballY.notifier).state = 0;
+  ref.read(isGameOver.notifier).state = false;
+  ref.read(hasGameInitiated.notifier).state = false;
+  ref.read(myBricksProvider.notifier).reset();
 }
 
 bool isPlayerDead(WidgetRef ref) {

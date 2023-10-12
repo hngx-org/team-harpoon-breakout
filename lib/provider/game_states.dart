@@ -29,7 +29,7 @@ final wallGap = StateProvider<double>((ref) =>
     0.5 * (ref.read(noOfBricksInRow.notifier).state * ref.read(brickWidth.notifier).state) -
     (ref.read(noOfBricksInRow.notifier).state - 1) * ref.read(brickGap.notifier).state);
 //ball Increment
-final brickXIncrement = StateProvider<double>((ref) => 0.01);
+final brickXIncrement = StateProvider<double>((ref) => 0.02);
 final brickYIncrement = StateProvider<double>((ref) => 0.01);
 
 //brick list
@@ -40,6 +40,13 @@ final brickGap = StateProvider<double>((ref) => 0.01);
 /// Ball direction
 enum Direction { up, down, left, right }
 
+//LRUD distance
+final leftsideDist = StateProvider<double>((ref) => 0.0);
+final rightsideDist = StateProvider<double>((ref) => 0.0);
+final topsideDist = StateProvider<double>((ref) => 0.0);
+final bottomsideDist = StateProvider<double>((ref) => 0.0);
+
+//ball direction
 final ballYDirection = StateProvider<Direction>((ref) => Direction.down);
 final ballXDirection = StateProvider<Direction>((ref) => Direction.left);
 
@@ -56,21 +63,40 @@ class MyBricksNotifier extends StateNotifier<List<List<dynamic>>> {
     required this.brickG,
   }) : super([
           [
-            firstBrickofX.state + 0 * (brickW.state + brickG.state),
+            firstBrickofX.state + 0.0 * (brickW.state + brickG.state),
             firstBrickofY.state,
             false,
           ],
           [
-            firstBrickofX.state + 1 * (brickW.state + brickG.state),
+            firstBrickofX.state + 1.0 * (brickW.state + brickG.state),
             firstBrickofY.state,
             false,
           ],
           [
-            firstBrickofX.state + 2 * (brickW.state + brickG.state),
+            firstBrickofX.state + 2.0 * (brickW.state + brickG.state),
             firstBrickofY.state,
             false,
           ],
         ]);
+        void reset(){
+          [
+              [
+            firstBrickofX.state + 0.0 * (brickW.state + brickG.state),
+            firstBrickofY.state,
+            false,
+          ],
+          [
+            firstBrickofX.state + 1.0 * (brickW.state + brickG.state),
+            firstBrickofY.state,
+            false,
+          ],
+          [
+            firstBrickofX.state + 2.0 * (brickW.state + brickG.state),
+            firstBrickofY.state,
+            false,
+          ],
+          ];
+        }
 }
 
 final myBricksProvider = StateNotifierProvider<MyBricksNotifier, List<List<dynamic>>>(

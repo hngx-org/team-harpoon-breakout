@@ -66,7 +66,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                 PlayScreen(hasGameInitiated: hasGameStarted),
 
                 //Game Status
-                const GameOverScreen(),
+                GameOverScreen(function: () => resetGame(ref)),
 
                 // Game ball
                 Ball(ballpositionX: ballpositionX, ballpositionY: ballpositionY),
@@ -108,7 +108,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                   bricky: myBrick[1][1],
                   brickBroken: myBrick[1][2],
                 ),
-                   MyBrick(
+                MyBrick(
                   brickH: brickH,
                   brickW: brickW,
                   brickx: myBrick[2][0],
