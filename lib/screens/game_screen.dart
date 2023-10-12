@@ -1,7 +1,9 @@
 // import 'package:flame/game.dart';
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:team_harpoon_breakout/audio/game_audio.dart';
 // import 'package:team_harpoon_breakout/audio/game_audio.dart';
 import 'package:team_harpoon_breakout/game_functions/start_game.dart';
 import 'package:team_harpoon_breakout/game_widgets/ball.dart';
@@ -51,10 +53,10 @@ class _GameScreenState extends ConsumerState<GameScreen> {
           moveRight(ref);
         }
       },
-      child: GestureDetector(
-        onTap: () => startGame(ref),
-        child: Scaffold(
-          body: Container(
+      child: Scaffold(
+        body: GestureDetector(
+          onTap: () => startGame(ref),
+          child: Container(
             width: double.maxFinite,
             height: double.maxFinite,
             decoration: const BoxDecoration(
@@ -65,6 +67,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             ),
             child: Stack(
               children: [
+                GameWidget(game: GameAudio()),
                 // Start game
                 PlayScreen(hasGameInitiated: hasGameStarted),
 

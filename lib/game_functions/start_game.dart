@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:team_harpoon_breakout/audio/game_audio.dart';
 import 'package:team_harpoon_breakout/provider/game_states.dart';
 
 // callback to start the game
@@ -17,6 +18,7 @@ void startGame(
     if (isPlayerDead(ref)) {
       timer.cancel();
       ref.read(isGameOver.notifier).state = true;
+      GameAudio.gameEnd();
     }
     checkBricksBroken(ref);
   });
@@ -44,6 +46,7 @@ void checkBricksBroken(WidgetRef ref) {
 bool isPlayerDead(WidgetRef ref) {
   final ballYState = ref.read(ballY.notifier).state;
   if (ballYState >= 1) {
+    GameAudio.gameEnd();
     return true;
   }
 

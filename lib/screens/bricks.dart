@@ -8,17 +8,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:team_harpoon_breakout/screens/gameoverscreen.dart';
 
 class MyBrick extends ConsumerWidget {
-  final brickH;
-  final brickW;
-  final brickx;
-  final bricky;
-  final brickBroken;
+  final double brickH;
+  final double brickW;
+  final double brickx;
+  final double bricky;
+  final bool brickBroken;
   const MyBrick(
-      {this.brickH,
-      this.brickW,
-      this.brickx,
-      this.bricky,
-      this.brickBroken,
+      {required this.brickH,
+      required this.brickW,
+      required this.brickx,
+      required this.bricky,
+      required this.brickBroken,
       super.key});
 
   @override
