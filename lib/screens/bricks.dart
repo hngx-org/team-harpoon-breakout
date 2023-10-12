@@ -13,14 +13,14 @@ class MyBrick extends ConsumerWidget {
   final brickx;
   final bricky;
   final brickBroken;
-  const MyBrick(this.brickH, this.brickW, this.brickx, this.bricky, this.brickBroken, {super.key});
+  const MyBrick({this.brickH, this.brickW, this.brickx, this.bricky, this.brickBroken, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return brickBroken
         ? Container()
         : Container(
-            alignment: const Alignment(0, -0.9),
+            alignment:  Alignment((2 * brickx + brickW) / (2 - brickW), bricky),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: Container(
