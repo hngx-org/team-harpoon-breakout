@@ -20,7 +20,7 @@ void startGame(
       ref.read(isGameOver.notifier).state = true;
       resetGame(ref);
     }
-    //Check if game is over
+    ///Check if game is over
     if (isPlayerDead(ref)) {
       timer.cancel();
       ref.read(isGameOver.notifier).state = true;
