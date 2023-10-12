@@ -6,6 +6,7 @@ import 'package:team_harpoon_breakout/game_widgets/ball.dart';
 import 'package:team_harpoon_breakout/game_widgets/player.dart';
 import 'package:team_harpoon_breakout/provider/game_states.dart';
 import 'package:team_harpoon_breakout/screens/bricks.dart';
+import 'package:team_harpoon_breakout/screens/gamePauseScreen.dart';
 import 'package:team_harpoon_breakout/screens/gameoverscreen.dart';
 
 class GameScreen extends ConsumerStatefulWidget {
@@ -38,6 +39,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     final brickW = ref.watch(brickWidth);
     final myBrick = ref.watch(myBricksProvider);
     final brokenBrick = ref.watch(brickBroken);
+
     return RawKeyboardListener(
       focusNode: FocusNode(),
       autofocus: true,
@@ -49,7 +51,14 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         }
       },
       child: GestureDetector(
-        onTap: () => startGame(ref),
+        onDoubleTap: () {
+          if (ref.watch(isGameOver)) {
+          } else if (ref.watch(hasGameInitiated) == false) {
+          } else {
+            ref.read(gamePaused.notifier).state = true;
+          }
+        },
+     
         child: Scaffold(
           body: Container(
             width: double.maxFinite,
@@ -67,6 +76,9 @@ class _GameScreenState extends ConsumerState<GameScreen> {
 
                 //Game Status
                 GameOverScreen(function: () => resetGame(ref)),
+
+                //Paused Game Screen
+                const GamePauseScreen(),
 
                 // Game ball
                 Ball(ballpositionX: ballpositionX, ballpositionY: ballpositionY),

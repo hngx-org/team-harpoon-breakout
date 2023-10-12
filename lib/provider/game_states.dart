@@ -50,9 +50,15 @@ final bottomsideDist = StateProvider<double>((ref) => 0.0);
 final ballYDirection = StateProvider<Direction>((ref) => Direction.down);
 final ballXDirection = StateProvider<Direction>((ref) => Direction.left);
 
+//Pause Game
+final gamePaused = StateProvider<bool>((ref) => false);
+
+//game Resume
+final gameResume = StateProvider<bool>((ref) => false);
 
 //levelcompleted
-final levelCompleted=StateProvider.autoDispose<bool>((ref)=>false);
+final levelCompleted = StateProvider.autoDispose<bool>((ref) => false);
+
 class MyBricksNotifier extends StateNotifier<List<List<dynamic>>> {
   final StateController<double> firstBrickofX;
   final StateController<double> firstBrickofY;
@@ -80,7 +86,6 @@ class MyBricksNotifier extends StateNotifier<List<List<dynamic>>> {
             firstBrickofY.state,
             false,
           ],
-          
         ]);
   void reset() {
     state = [
