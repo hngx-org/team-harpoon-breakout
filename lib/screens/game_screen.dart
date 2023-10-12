@@ -72,7 +72,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                 PlayScreen(hasGameInitiated: hasGameStarted),
 
                 //Game Status
-                const GameOverScreen(),
+                GameOverScreen(function: () => resetGame(ref)),
 
                 // Game ball
                 Ball(
