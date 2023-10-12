@@ -77,26 +77,27 @@ class MyBricksNotifier extends StateNotifier<List<List<dynamic>>> {
             firstBrickofY.state,
             false,
           ],
+          
         ]);
-        void reset(){
-          [
-              [
-            firstBrickofX.state + 0.0 * (brickW.state + brickG.state),
-            firstBrickofY.state,
-            false,
-          ],
-          [
-            firstBrickofX.state + 1.0 * (brickW.state + brickG.state),
-            firstBrickofY.state,
-            false,
-          ],
-          [
-            firstBrickofX.state + 2.0 * (brickW.state + brickG.state),
-            firstBrickofY.state,
-            false,
-          ],
-          ];
-        }
+  void reset() {
+    state = [
+      [
+        firstBrickofX.state + 0.0 * (brickW.state + brickG.state),
+        firstBrickofY.state,
+        false,
+      ],
+      [
+        firstBrickofX.state + 1.0 * (brickW.state + brickG.state),
+        firstBrickofY.state,
+        false,
+      ],
+      [
+        firstBrickofX.state + 2.0 * (brickW.state + brickG.state),
+        firstBrickofY.state,
+        false,
+      ],
+    ];
+  }
 }
 
 final myBricksProvider = StateNotifierProvider<MyBricksNotifier, List<List<dynamic>>>(
