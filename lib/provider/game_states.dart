@@ -50,6 +50,9 @@ final bottomsideDist = StateProvider<double>((ref) => 0.0);
 final ballYDirection = StateProvider<Direction>((ref) => Direction.down);
 final ballXDirection = StateProvider<Direction>((ref) => Direction.left);
 
+
+//levelcompleted
+final levelCompleted=StateProvider.autoDispose<bool>((ref)=>false);
 class MyBricksNotifier extends StateNotifier<List<List<dynamic>>> {
   final StateController<double> firstBrickofX;
   final StateController<double> firstBrickofY;

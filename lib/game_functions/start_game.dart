@@ -13,6 +13,12 @@ void startGame(
     // ref.read(ballY.notifier).state -= 0.0001;
     updateDirection(ref);
     moveBall(ref);
+    //check if level completed
+    if (ref.watch(levelCompleted)) {
+      timer.cancel();
+      ref.read(isGameOver.notifier).state = true;
+      resetGame(ref);
+    }
     //Check if game is over
     if (isPlayerDead(ref)) {
       timer.cancel();
@@ -25,14 +31,15 @@ void startGame(
 void checkBricksBroken(WidgetRef ref) {
   var ballYState = ref.read(ballY.notifier).state;
   final ballXState = ref.read(ballX.notifier).state;
-  final brickXState = ref.read(firstbrickX.notifier).state;
-  final brickYState = ref.read(firstbrickY.notifier).state;
   final brickH = ref.read(brickHeight.notifier).state;
   final brickW = ref.read(brickWidth.notifier).state;
   final myBrick = ref.watch(myBricksProvider);
   for (int i = 0; i < myBrick.length; i++) {
     if (ballXState >= myBrick[i][0] && ballXState <= myBrick[i][0] + brickW && ballYState <= myBrick[i][1] + brickH && myBrick[i][2] == false) {
       myBrick[i][2] = true;
+      //check if all bricks is true
+      ref.read(levelCompleted.notifier).state = myBrick.every((innerList) => innerList[2] == true);
+
       //since brick is broken, update direction of ball
       //based on which side the brick it hit
       //to achieve this, we calculate the distance of the ball from each of the four sides
