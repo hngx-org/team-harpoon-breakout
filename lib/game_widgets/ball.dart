@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class Ball extends StatelessWidget {
@@ -15,8 +16,8 @@ class Ball extends StatelessWidget {
     return Container(
       alignment: Alignment(ballpositionX, ballpositionY),
       child: Container(
-        height: 25,
-        width: 25,
+        height: 20,
+        width: 20,
         decoration: const BoxDecoration(
           color: Colors.white,
           shape: BoxShape.circle,

@@ -17,7 +17,7 @@ class Player extends ConsumerWidget {
         width: MediaQuery.of(context).size.width * playerWidth / 2,
         decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+         
         ),
       ),
     );
