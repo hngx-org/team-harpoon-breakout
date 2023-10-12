@@ -16,7 +16,7 @@ final hasGameEnded = StateProvider<bool>((ref) => false);
 final playerPositionX = StateProvider<double>((ref) => -0.2);
 
 /// Player width
-final playerWidth = StateProvider<double>((ref) => 0.4);
+final playerWidth = StateProvider<double>((ref) => 0.3);
 
 ///GameStatus
 final isGameOver = StateProvider<bool>((ref) => false);
