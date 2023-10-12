@@ -7,19 +7,36 @@ import 'package:team_harpoon_breakout/provider/game_states.dart';
 // callback to start the game
 void startGame(
   WidgetRef ref,
-) {
+) async {
   ref.read(hasGameInitiated.notifier).state = true;
+
+  print(ref.watch(gameResume));
+  if (ref.watch(gameResume)) {
+    ref.read(gameResume.notifier).state = false;
+    init(ref);
+  } else {
+    init(ref);
+  }
+}
+
+void init(
+  WidgetRef ref,
+) {
   Timer.periodic(const Duration(milliseconds: 10), (timer) {
     // ref.read(ballY.notifier).state -= 0.0001;
     updateDirection(ref);
     moveBall(ref);
+
     //check if level completed
     if (ref.watch(levelCompleted)) {
       timer.cancel();
-      
       ref.read(isGameOver.notifier).state = true;
       resetGame(ref);
     }
+    if (ref.watch(gamePaused)) {
+      timer.cancel();
+    }
+
     ///Check if game is over
     if (isPlayerDead(ref)) {
       timer.cancel();
@@ -187,14 +204,19 @@ class PlayScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return hasGameInitiated
         ? Container()
-        : Container(
-            alignment: const Alignment(0, -0.1),
-            child: const Text(
-              'Tap to start',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
+        : GestureDetector(
+            onTap: () => startGame(ref),
+            child: Center(
+              child: Container(
+                alignment: const Alignment(0, -0.1),
+                child: const Text(
+                  'Tap to start',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           );
