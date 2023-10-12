@@ -16,6 +16,7 @@ void startGame(
     //check if level completed
     if (ref.watch(levelCompleted)) {
       timer.cancel();
+      
       ref.read(isGameOver.notifier).state = true;
       resetGame(ref);
     }
