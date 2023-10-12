@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:team_harpoon_breakout/game_functions/start_game.dart';
-import 'package:team_harpoon_breakout/game_widgets/ball.dart';
-import 'package:team_harpoon_breakout/game_widgets/player.dart';
-import 'package:team_harpoon_breakout/provider/game_states.dart';
-import 'package:team_harpoon_breakout/screens/gameoverscreen.dart';
+// import 'package:team_harpoon_breakout/game_functions/start_game.dart';
+// import 'package:team_harpoon_breakout/game_widgets/ball.dart';
+// import 'package:team_harpoon_breakout/game_widgets/player.dart';
+// import 'package:team_harpoon_breakout/provider/game_states.dart';
+// import 'package:team_harpoon_breakout/screens/gameoverscreen.dart';
 
 class MyBrick extends ConsumerWidget {
   final brickH;
@@ -13,14 +13,20 @@ class MyBrick extends ConsumerWidget {
   final brickx;
   final bricky;
   final brickBroken;
-  const MyBrick({this.brickH, this.brickW, this.brickx, this.bricky, this.brickBroken, super.key});
+  const MyBrick(
+      {this.brickH,
+      this.brickW,
+      this.brickx,
+      this.bricky,
+      this.brickBroken,
+      super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return brickBroken
         ? Container()
         : Container(
-            alignment:  Alignment((2 * brickx + brickW) / (2 - brickW), bricky),
+            alignment: Alignment((2 * brickx + brickW) / (2 - brickW), bricky),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: Container(

@@ -25,8 +25,8 @@ void startGame(
 void checkBricksBroken(WidgetRef ref) {
   var ballYState = ref.read(ballY.notifier).state;
   final ballXState = ref.read(ballX.notifier).state;
-  final brickXState = ref.read(firstbrickX.notifier).state;
-  final brickYState = ref.read(firstbrickY.notifier).state;
+  // final brickXState = ref.read(firstbrickX.notifier).state;
+  // final brickYState = ref.read(firstbrickY.notifier).state;
   final brickH = ref.read(brickHeight.notifier).state;
   final brickW = ref.read(brickWidth.notifier).state;
   final myBrick = ref.watch(myBricksProvider);
