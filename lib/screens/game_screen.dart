@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_harpoon_breakout/game_functions/start_game.dart';
 import 'package:team_harpoon_breakout/game_widgets/ball.dart';
+import 'package:team_harpoon_breakout/game_widgets/bricks.dart';
 import 'package:team_harpoon_breakout/game_widgets/player.dart';
 import 'package:team_harpoon_breakout/provider/game_states.dart';
+import 'package:team_harpoon_breakout/screens/gameover_screen.dart';
 
 class GameScreen extends ConsumerStatefulWidget {
   const GameScreen({super.key});
@@ -28,6 +30,13 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     // player coordinates
     final playerX = ref.watch(playerPositionX);
     final playerWidthState = ref.watch(playerWidth);
+
+    // brick variables
+    final brickWidthState = ref.watch(brickWidth);
+    final brickHeightState = ref.watch(brickHeight);
+    final brickXState = ref.watch(brickX);
+    final brickYState = ref.watch(brickY);
+    final brickBrokenState = ref.watch(isBrickBroken);
 
     return RawKeyboardListener(
       focusNode: FocusNode(),
@@ -56,6 +65,9 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                 // Start game
                 PlayScreen(hasGameInitiated: hasGameStarted),
 
+                // Game over
+                GameOverScreen(isGameOver: ref.watch(hasGameEnded)),
+
                 // Game ball
                 Ball(
                     ballpositionX: ballpositionX, ballpositionY: ballpositionY),
@@ -81,6 +93,15 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                     width: 4,
                     height: 15,
                   ),
+                ),
+
+                /// bricks
+                Brick(
+                  brickXState: brickXState,
+                  brickYState: brickYState,
+                  brickHeightState: brickHeightState,
+                  brickWidthState: brickWidthState,
+                  isBrickBroken: brickBrokenState,
                 )
               ],
             ),
