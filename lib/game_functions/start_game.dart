@@ -25,17 +25,17 @@ void startGame(
 void checkBricksBroken(WidgetRef ref) {
   var ballYState = ref.read(ballY.notifier).state;
   final ballXState = ref.read(ballX.notifier).state;
-  final brickXState = ref.read(brickX.notifier).state;
-  final brickYState = ref.read(brickY.notifier).state;
+  final brickXState = ref.read(firstbrickX.notifier).state;
+  final brickYState = ref.read(firstbrickY.notifier).state;
   final brickH = ref.read(brickHeight.notifier).state;
   final brickW = ref.read(brickWidth.notifier).state;
-  if (ballXState >= brickXState &&
-      ballXState <= brickXState + brickW &&
-      ballYState >= brickYState &&
-      ballYState <= brickYState + brickH &&
-      ref.watch(brickBroken) == false) {
-    ref.read(brickBroken.notifier).state = true;
-    ref.read(ballYDirection.notifier).state = Direction.down;
+  final myBrick = ref.watch(myBricksProvider);
+  for (int i = 0; i < myBrick.length; i++) {
+    if (ballXState >= myBrick[i][0] && ballXState <= myBrick[i][0] 
+    + brickW && ballYState <= myBrick[i][1] + brickH && myBrick[i][2] == false) {
+      myBrick[i][2] = true;
+      ref.read(ballYDirection.notifier).state = Direction.down;
+    }
   }
 }
 
@@ -79,7 +79,6 @@ void moveBall(WidgetRef ref) {
   //move horinzontally
   if (ballDirectionX == Direction.left) {
     ref.read(ballX.notifier).state -= incrementBrickX;
-  
   } else if (ballDirectionX == Direction.right) {
     ref.read(ballX.notifier).state += incrementBrickX;
   }
