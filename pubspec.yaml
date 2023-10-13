@@ -37,6 +37,7 @@ dependencies:
   flame_tiled: ^1.14.1
   flutter_riverpod: ^2.4.3
   flame_audio: ^2.1.2
+  flame: ^1.0.0
 
 dev_dependencies:
   flutter_test:
