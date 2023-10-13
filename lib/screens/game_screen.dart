@@ -43,7 +43,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     final brickH = ref.watch(brickHeight);
     final brickW = ref.watch(brickWidth);
     final myBrick = ref.watch(myBricksProvider);
-
+    // final brokenBrick = ref.watch(brickBroken);
     return RawKeyboardListener(
       focusNode: FocusNode(),
       autofocus: true,
@@ -64,81 +64,75 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         },
         child: Scaffold(
           body: Container(
-            child: Scaffold(
-              body: GestureDetector(
-                onTap: () => startGame(ref),
-                child: Container(
-                  width: double.maxFinite,
-                  height: double.maxFinite,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/Space Background.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      GameWidget(game: GameAudio()),
-                      // Start game
-                      PlayScreen(hasGameInitiated: hasGameStarted),
+            width: double.maxFinite,
+            height: double.maxFinite,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/Space Background.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Stack(
+              children: [
+                GameWidget(game: GameAudio()),
+                // Start game
+                PlayScreen(hasGameInitiated: hasGameStarted),
 
-                      //Game Status
-                      GameOverScreen(function: () => resetGame(ref)),
+                //Game Status
+                GameOverScreen(function: () => resetGame(ref)),
 
-                      //Paused Game Screen
-                      const GamePauseScreen(),
+                //Paused Game Screen
+                const GamePauseScreen(),
 
-                      // Game ball
-                      Ball(ballpositionX: ballpositionX, ballpositionY: ballpositionY),
+                // Game ball
+                Ball(
+                    ballpositionX: ballpositionX, ballpositionY: ballpositionY),
 
-                      // Player
-                      Player(playerWidth: playerWidthState, playerX: playerX),
+                // Player
+                Player(playerWidth: playerWidthState, playerX: playerX),
 
-                      /// playerX
-                      Container(
-                        alignment: Alignment(playerX, 0.9),
-                        child: Container(
-                          color: Colors.red,
-                          width: 4,
-                          height: 15,
-                        ),
-                      ),
-
-                      /// playerX
-                      Container(
-                        alignment: Alignment(playerX + playerWidthState, 0.9),
-                        child: Container(
-                          color: Colors.green,
-                          width: 4,
-                          height: 15,
-                        ),
-                      ),
-
-                      MyBrick(
-                        brickH: brickH,
-                        brickW: brickW,
-                        brickx: myBrick[0][0],
-                        bricky: myBrick[0][1],
-                        brickBroken: myBrick[0][2],
-                      ),
-                      MyBrick(
-                        brickH: brickH,
-                        brickW: brickW,
-                        brickx: myBrick[1][0],
-                        bricky: myBrick[1][1],
-                        brickBroken: myBrick[1][2],
-                      ),
-                      MyBrick(
-                        brickH: brickH,
-                        brickW: brickW,
-                        brickx: myBrick[2][0],
-                        bricky: myBrick[2][1],
-                        brickBroken: myBrick[2][2],
-                      ),
-                    ],
+                /// playerX
+                Container(
+                  alignment: Alignment(playerX, 0.9),
+                  child: Container(
+                    color: Colors.red,
+                    width: 4,
+                    height: 15,
                   ),
                 ),
-              ),
+
+                /// playerX
+                Container(
+                  alignment: Alignment(playerX + playerWidthState, 0.9),
+                  child: Container(
+                    color: Colors.green,
+                    width: 4,
+                    height: 15,
+                  ),
+                ),
+
+                MyBrick(
+                  brickH: brickH,
+                  brickW: brickW,
+                  brickx: myBrick[0][0],
+                  bricky: myBrick[0][1],
+                  brickBroken: myBrick[0][2],
+                ),
+                MyBrick(
+                  brickH: brickH,
+                  brickW: brickW,
+                  brickx: myBrick[1][0],
+                  bricky: myBrick[1][1],
+                  brickBroken: myBrick[1][2],
+                ),
+                MyBrick(
+                  brickH: brickH,
+                  brickW: brickW,
+                  brickx: myBrick[2][0],
+                  bricky: myBrick[2][1],
+                  brickBroken: myBrick[2][2],
+                ),
+              ],
             ),
           ),
         ),
