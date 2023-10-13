@@ -1,4 +1,5 @@
 import 'package:flame/flame.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_harpoon_breakout/screens/game_screen.dart';
@@ -9,6 +10,7 @@ import 'screens/splash.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Flame.device.fullScreen();
+  FlameAudio.bgm.initialize();
 
   // Breakout game = Breakout();
   runApp(const ProviderScope(child: BreakoutGame()));
@@ -33,4 +35,3 @@ class BreakoutGame extends StatelessWidget {
     );
   }
 }
-//ggg

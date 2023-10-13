@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:team_harpoon_breakout/audio/game_audio.dart';
 import 'package:team_harpoon_breakout/provider/game_states.dart';
 
 // callback to start the game
@@ -31,10 +32,8 @@ void init(
     if (ref.watch(levelCompleted)) {
       timer.cancel();
       ref.read(isGameOver.notifier).state = true;
+      GameAudio.gameEnd();
       resetGame(ref);
-    }
-    if (ref.watch(gamePaused)) {
-      timer.cancel();
     }
 
     ///Check if game is over
@@ -53,20 +52,28 @@ void checkBricksBroken(WidgetRef ref) {
   final brickW = ref.read(brickWidth.notifier).state;
   final myBrick = ref.watch(myBricksProvider);
   for (int i = 0; i < myBrick.length; i++) {
-    if (ballXState >= myBrick[i][0] && ballXState <= myBrick[i][0] + brickW && ballYState <= myBrick[i][1] + brickH && myBrick[i][2] == false) {
+    if (ballXState >= myBrick[i][0] &&
+        ballXState <= myBrick[i][0] + brickW &&
+        ballYState <= myBrick[i][1] + brickH &&
+        myBrick[i][2] == false) {
       myBrick[i][2] = true;
       //check if all bricks is true
-      ref.read(levelCompleted.notifier).state = myBrick.every((innerList) => innerList[2] == true);
+      ref.read(levelCompleted.notifier).state =
+          myBrick.every((innerList) => innerList[2] == true);
 
       //since brick is broken, update direction of ball
       //based on which side the brick it hit
       //to achieve this, we calculate the distance of the ball from each of the four sides
       //the smallest distance is the side the ball has it
 
-      ref.read(leftsideDist.notifier).state = ((myBrick[i][0] as double) - (ballXState)).abs();
-      ref.read(rightsideDist.notifier).state = (((myBrick[i][0] + brickW) as double) - ballXState).abs();
-      ref.read(topsideDist.notifier).state = ((myBrick[i][1] as double) - ballYState).abs();
-      ref.read(bottomsideDist.notifier).state = ((myBrick[i][1] as double) + brickH - ballYState).abs();
+      ref.read(leftsideDist.notifier).state =
+          ((myBrick[i][0] as double) - (ballXState)).abs();
+      ref.read(rightsideDist.notifier).state =
+          (((myBrick[i][0] + brickW) as double) - ballXState).abs();
+      ref.read(topsideDist.notifier).state =
+          ((myBrick[i][1] as double) - ballYState).abs();
+      ref.read(bottomsideDist.notifier).state =
+          ((myBrick[i][1] as double) + brickH - ballYState).abs();
       String min = findMin(
         ref.read(leftsideDist.notifier).state,
         ref.read(rightsideDist.notifier).state,
@@ -145,7 +152,9 @@ void updateDirection(WidgetRef ref) {
   final playerWidthState = ref.read(playerWidth.notifier).state;
 
   //ball moves up when it hits the player
-  if (ballYState >= 0.9 && ballXState >= playerX && ballXState <= playerX + playerWidthState) {
+  if (ballYState >= 0.9 &&
+      ballXState >= playerX &&
+      ballXState <= playerX + playerWidthState) {
     ref.read(ballYDirection.notifier).state = Direction.up;
     //down when it hits the top of the screen
   } else if (ballYState <= -1) {

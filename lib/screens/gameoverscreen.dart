@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:team_harpoon_breakout/game_functions/start_game.dart';
-import 'package:team_harpoon_breakout/game_widgets/ball.dart';
-import 'package:team_harpoon_breakout/game_widgets/player.dart';
+// import 'package:team_harpoon_breakout/game_functions/start_game.dart';
+// import 'package:team_harpoon_breakout/game_widgets/ball.dart';
+// import 'package:team_harpoon_breakout/game_widgets/player.dart';
 import 'package:team_harpoon_breakout/provider/game_states.dart';
 
 class GameOverScreen extends ConsumerWidget {
-  void Function()? function;
-  GameOverScreen({super.key, this.function});
+  final void Function()? function;
+  const GameOverScreen({super.key, this.function});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,9 +34,8 @@ class GameOverScreen extends ConsumerWidget {
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.white
-                    ),
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.white),
                     child: const Text(
                       "PLAY AGAIN",
                       style: TextStyle(

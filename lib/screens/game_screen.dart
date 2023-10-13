@@ -1,8 +1,13 @@
+// import 'package:flame/game.dart';
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:team_harpoon_breakout/audio/game_audio.dart';
+// import 'package:team_harpoon_breakout/audio/game_audio.dart';
 import 'package:team_harpoon_breakout/game_functions/start_game.dart';
 import 'package:team_harpoon_breakout/game_widgets/ball.dart';
+// import 'package:team_harpoon_breakout/game_widgets/bricks.dart';
 import 'package:team_harpoon_breakout/game_widgets/player.dart';
 import 'package:team_harpoon_breakout/provider/game_states.dart';
 import 'package:team_harpoon_breakout/screens/bricks.dart';
@@ -33,13 +38,12 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     final playerWidthState = ref.watch(playerWidth);
 
     //brickElements
-    final brickx = ref.watch(firstbrickX);
-    final bricky = ref.watch(firstbrickY);
+    // final brickx = ref.watch(firstbrickX);
+    // final bricky = ref.watch(firstbrickY);
     final brickH = ref.watch(brickHeight);
     final brickW = ref.watch(brickWidth);
     final myBrick = ref.watch(myBricksProvider);
-    final brokenBrick = ref.watch(brickBroken);
-
+    // final brokenBrick = ref.watch(brickBroken);
     return RawKeyboardListener(
       focusNode: FocusNode(),
       autofocus: true,
@@ -58,7 +62,6 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             ref.read(gamePaused.notifier).state = true;
           }
         },
-     
         child: Scaffold(
           body: Container(
             width: double.maxFinite,
@@ -71,6 +74,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             ),
             child: Stack(
               children: [
+                GameWidget(game: GameAudio()),
                 // Start game
                 PlayScreen(hasGameInitiated: hasGameStarted),
 
@@ -81,7 +85,8 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                 const GamePauseScreen(),
 
                 // Game ball
-                Ball(ballpositionX: ballpositionX, ballpositionY: ballpositionY),
+                Ball(
+                    ballpositionX: ballpositionX, ballpositionY: ballpositionY),
 
                 // Player
                 Player(playerWidth: playerWidthState, playerX: playerX),
