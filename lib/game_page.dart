@@ -7,7 +7,7 @@ import 'package:team_harpoon_breakout/utils/constants.dart';
 import 'package:team_harpoon_breakout/widgets/game_over.dart';
 import 'package:team_harpoon_breakout/widgets/game_pause.dart';
 import 'package:team_harpoon_breakout/widgets/game_top_bar.dart';
-
+//
 class GamePage extends StatefulWidget {
   const GamePage({super.key, required this.title});
   final String title;
