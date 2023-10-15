@@ -32,7 +32,7 @@ void init(
     if (ref.watch(levelCompleted)) {
       timer.cancel();
       ref.read(isGameOver.notifier).state = true;
-      GameAudio.gameEnd();
+     // GameAudio.gameEnd();
       resetGame(ref);
     }
 
@@ -138,7 +138,7 @@ void resetGame(WidgetRef ref) {
   ref.read(ballY.notifier).state = 0;
   ref.read(isGameOver.notifier).state = false;
   ref.read(hasGameInitiated.notifier).state = false;
-  ref.read(myBricksProvider.notifier).reset();
+  ref.read(myBricksProvider.notifier).reset(10);
 }
 
 bool isPlayerDead(WidgetRef ref) {

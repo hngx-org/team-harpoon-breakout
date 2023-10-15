@@ -74,7 +74,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             ),
             child: Stack(
               children: [
-                GameWidget(game: GameAudio()),
+                // GameWidget(game: GameAudio()),
                 // Start game
                 PlayScreen(hasGameInitiated: hasGameStarted),
 
@@ -85,8 +85,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                 const GamePauseScreen(),
 
                 // Game ball
-                Ball(
-                    ballpositionX: ballpositionX, ballpositionY: ballpositionY),
+                Ball(ballpositionX: ballpositionX, ballpositionY: ballpositionY),
 
                 // Player
                 Player(playerWidth: playerWidthState, playerX: playerX),
@@ -110,28 +109,58 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                     height: 15,
                   ),
                 ),
-
-                MyBrick(
-                  brickH: brickH,
-                  brickW: brickW,
-                  brickx: myBrick[0][0],
-                  bricky: myBrick[0][1],
-                  brickBroken: myBrick[0][2],
+                Container(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: myBrick.length,
+                    itemBuilder: (context, index) {
+                      return MyBrick(
+                        brickH: brickH,
+                        brickW: brickW,
+                        brickx: myBrick[index][0],
+                        bricky: myBrick[index][1],
+                        brickBroken: myBrick[index][2],
+                        bricksPerRow: 4,
+                      );
+                    },
+                  ),
                 ),
-                MyBrick(
-                  brickH: brickH,
-                  brickW: brickW,
-                  brickx: myBrick[1][0],
-                  bricky: myBrick[1][1],
-                  brickBroken: myBrick[1][2],
-                ),
-                MyBrick(
-                  brickH: brickH,
-                  brickW: brickW,
-                  brickx: myBrick[2][0],
-                  bricky: myBrick[2][1],
-                  brickBroken: myBrick[2][2],
-                ),
+                // ListView(
+                //   shrinkWrap: true,
+                //   children: List.generate(
+                //     (myBrick.length / 4).ceil(),
+                //     (rowIndex) {
+                //       return Row(
+                //         children: List.generate(4, (brickIndex) {
+                //           final index = myBrick.length - 1 - (rowIndex * 4 + brickIndex);
+                //           if (index >= 0) {
+                //             return myBrick[index][2]
+                //                 ? Container()
+                //                 : Padding(
+                //                   padding: const EdgeInsets.all(5.0),
+                //                   child: Container(
+                //                       alignment: Alignment(
+                //                         (myBrick[index][0] * brickW + myBrick[index][0] * brickW * (4 - 1)),
+                //                         myBrick[index][1],
+                //                       ),
+                //                       child: ClipRRect(
+                //                         borderRadius: BorderRadius.circular(5),
+                //                         child: Container(
+                //                           height: MediaQuery.of(context).size.height * brickH / 2,
+                //                           width: MediaQuery.of(context).size.width * brickW / 2,
+                //                           color: Colors.white,
+                //                         ),
+                //                       ),
+                //                     ),
+                //                 );
+                //           } else {
+                //             return Container();
+                //           }
+                //         }),
+                //       );
+                //     },
+                //   ),
+                // )
               ],
             ),
           ),
