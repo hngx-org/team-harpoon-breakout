@@ -1,6 +1,8 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_harpoon_breakout/bricks_breaker.dart';
+import 'package:team_harpoon_breakout/provider/game_states.dart';
 import 'package:team_harpoon_breakout/utils/constants.dart';
 import 'package:team_harpoon_breakout/widgets/game_over.dart';
 import 'package:team_harpoon_breakout/widgets/game_pause.dart';
@@ -32,9 +34,12 @@ class _GamePageState extends State<GamePage> {
             child: GameWidget(
               game: game,
               overlayBuilderMap: <String, Widget Function(BuildContext, Game)>{
-                'gameOverOverlay': (context, game) => GameOver(
-                      game: game,
-                    ),
+                'gameOverOverlay': (context, game) {
+                  highestScore.value.add((game as BricksBreaker).gameManager.score.value);
+                  return GameOver(
+                    game: game,
+                  );
+                },
                 'gamePauseOverlay': (context, game) => GamePause(
                       game: game,
                     ),
