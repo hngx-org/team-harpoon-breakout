@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:team_harpoon_breakout/bricks_breaker_game.dart';
 import 'package:team_harpoon_breakout/screens/game_screen.dart';
 
 class Menu extends StatelessWidget {
@@ -46,7 +47,7 @@ class Menu extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.5,
             ),
             GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(GameScreen.route),
+              onTap: () => Navigator.of(context).pushNamed(BricksBreakerGame.route),
               child: Container(
                 padding: const EdgeInsets.all(5),
                 margin: const EdgeInsets.only(bottom: 20),
@@ -68,46 +69,46 @@ class Menu extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(5),
-              margin: const EdgeInsets.only(bottom: 20),
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    width: 2,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              child: const Text(
-                'Leaderboard',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w300,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(5),
-              margin: const EdgeInsets.only(bottom: 20),
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    width: 2,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              child: const Text(
-                'Settings',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w300,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            // Container(
+            //   padding: const EdgeInsets.all(5),
+            //   margin: const EdgeInsets.only(bottom: 20),
+            //   decoration: const BoxDecoration(
+            //     border: Border(
+            //       bottom: BorderSide(
+            //         width: 2,
+            //         color: Colors.white,
+            //       ),
+            //     ),
+            //   ),
+            //   child: const Text(
+            //     'Leaderboard',
+            //     style: TextStyle(
+            //       fontSize: 20,
+            //       fontWeight: FontWeight.w300,
+            //       color: Colors.white,
+            //     ),
+            //   ),
+            // ),
+            // Container(
+            //   padding: const EdgeInsets.all(5),
+            //   margin: const EdgeInsets.only(bottom: 20),
+            //   decoration: const BoxDecoration(
+            //     border: Border(
+            //       bottom: BorderSide(
+            //         width: 2,
+            //         color: Colors.white,
+            //       ),
+            //     ),
+            //   ),
+            //   child: const Text(
+            //     'Settings',
+            //     style: TextStyle(
+            //       fontSize: 20,
+            //       fontWeight: FontWeight.w300,
+            //       color: Colors.white,
+            //     ),
+            //   ),
+            // ),
             GestureDetector(
               onTap: () => SystemNavigator.pop(),
               child: Container(

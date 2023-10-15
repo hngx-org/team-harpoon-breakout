@@ -16,7 +16,7 @@ void main() {
   // Breakout game = Breakout();
   runApp(
     const ProviderScope(
-      child: BricksBreakerGame(),
+      child: BreakoutGame(),
     ),
   );
 }
@@ -35,7 +35,7 @@ class BreakoutGame extends StatelessWidget {
       routes: {
         Splash.route: (context) => const Splash(),
         Menu.route: (context) => const Menu(),
-        GameScreen.route: (context) => const GameScreen(),
+        BricksBreakerGame.route: (context) => const BricksBreakerGame(),
       },
     );
   }

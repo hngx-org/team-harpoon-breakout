@@ -1,16 +1,15 @@
 import 'dart:math';
 
-
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 
 import 'package:flutter/material.dart';
 import 'package:team_harpoon_breakout/bricks_breaker.dart';
 import 'package:team_harpoon_breakout/components/ball.dart';
 import 'package:team_harpoon_breakout/utils/constants.dart';
 
-class Brick extends PositionComponent
-    with CollisionCallbacks, HasGameRef<BricksBreaker> {
+class Brick extends PositionComponent with CollisionCallbacks, HasGameRef<BricksBreaker> {
   Brick({
     required this.brickValue,
     required this.brickRow,
@@ -114,15 +113,15 @@ class Brick extends PositionComponent
   void handleCollision() {
     if (brickText.text == brickRowRemoverText) {
       gameRef.removeBrickLayerRow(brickRow);
-    //  FlameAudio.play(brickRowRemoverAudio);
+      //  FlameAudio.play(brickRowRemoverAudio);
       return;
     }
     if (brickText.text == brickColumnRemoverText) {
       gameRef.removeBrickLayerColumn(brickColumn);
-    //  FlameAudio.play(brickColumnRemoverAudio);
+      FlameAudio.play(brickColumnRemoverAudio);
       return;
     }
-  //  FlameAudio.play(ballAudio);
+    FlameAudio.play(ballAudio);
     if (--brickValue == 0) {
       removeFromParent();
       return;
