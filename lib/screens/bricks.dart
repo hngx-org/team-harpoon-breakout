@@ -13,12 +13,14 @@ class MyBrick extends ConsumerWidget {
   final double brickx;
   final double bricky;
   final bool brickBroken;
+  final int bricksPerRow;
   const MyBrick(
       {required this.brickH,
       required this.brickW,
       required this.brickx,
       required this.bricky,
       required this.brickBroken,
+      required this.bricksPerRow,
       super.key});
 
   @override
@@ -26,7 +28,11 @@ class MyBrick extends ConsumerWidget {
     return brickBroken
         ? Container()
         : Container(
-            alignment: Alignment((2 * brickx + brickW) / (2 - brickW), bricky),
+          width: MediaQuery.of(context).size.width,
+            alignment: Alignment(
+              (brickx * brickW + brickx * brickW * (bricksPerRow - 1)),
+              bricky,
+            ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: Container(

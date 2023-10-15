@@ -28,7 +28,7 @@ final firstbrickY = StateProvider<double>((ref) => -0.9);
 final brickHeight = StateProvider<double>((ref) => 0.05);
 final brickWidth = StateProvider<double>((ref) => 0.4);
 final brickBroken = StateProvider<bool>((ref) => false);
-final noOfBricksInRow = StateProvider<double>((ref) => 3);
+final noOfBricksInRow = StateProvider<double>((ref) => 4);
 final wallGap = StateProvider<double>((ref) =>
     0.5 *
         (ref.read(noOfBricksInRow.notifier).state *
@@ -72,47 +72,43 @@ class MyBricksNotifier extends StateNotifier<List<List<dynamic>>> {
   final StateController<double> brickW;
   final StateController<double> brickG;
 
-  MyBricksNotifier({
+MyBricksNotifier({
     required this.firstBrickofX,
     required this.firstBrickofY,
     required this.brickW,
     required this.brickG,
-  }) : super([
-          [
-            firstBrickofX.state + 0.0 * (brickW.state + brickG.state),
-            firstBrickofY.state,
-            false,
-          ],
-          [
-            firstBrickofX.state + 1.0 * (brickW.state + brickG.state),
-            firstBrickofY.state,
-            false,
-          ],
-          [
-            firstBrickofX.state + 2.0 * (brickW.state + brickG.state),
-            firstBrickofY.state,
-            false,
-          ],
-        ]);
-  void reset() {
-    state = [
-      [
-        firstBrickofX.state + 0.0 * (brickW.state + brickG.state),
+    required int numberOfBricks, // Add this parameter
+  }) : super(generateBricks(
+        firstBrickofX.state,
         firstBrickofY.state,
-        false,
-      ],
-      [
-        firstBrickofX.state + 1.0 * (brickW.state + brickG.state),
-        firstBrickofY.state,
-        false,
-      ],
-      [
-        firstBrickofX.state + 2.0 * (brickW.state + brickG.state),
-        firstBrickofY.state,
-        false,
-      ],
-    ];
+        brickW.state,
+        brickG.state,
+        numberOfBricks,
+      ));
+
+  static List<List<dynamic>> generateBricks(
+    double startX,
+    double startY,
+    double brickWidth,
+    double brickGap,
+    int numberOfBricks,
+  ) {
+    List<List<dynamic>> bricks = [];
+    for (int i = 0; i < numberOfBricks; i++) {
+      bricks.add([startX + i * (brickWidth + brickGap), startY, false]);
+    }
+    return bricks;
   }
+ void reset(int numberOfBricks) {
+    state = generateBricks(
+      firstBrickofX.state,
+      firstBrickofY.state,
+      brickW.state,
+      brickG.state,
+      numberOfBricks,
+    );
+}
+
 }
 
 final myBricksProvider =
@@ -122,5 +118,6 @@ final myBricksProvider =
     firstBrickofY: ref.watch(firstbrickY.notifier),
     brickW: ref.watch(brickWidth.notifier),
     brickG: ref.watch(brickGap.notifier),
+   numberOfBricks: 10,
   ),
 );
