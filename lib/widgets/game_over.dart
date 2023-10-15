@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:team_harpoon_breakout/bricks_breaker.dart';
 import 'package:team_harpoon_breakout/utils/constants.dart';
 import 'package:team_harpoon_breakout/widgets/game_button.dart';
+import 'package:team_harpoon_breakout/widgets/game_score.dart';
 
 class GameOver extends StatelessWidget {
   const GameOver({
@@ -44,16 +45,16 @@ class GameOver extends StatelessWidget {
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
                 const SizedBox(height: 10),
-                // GameScore(
-                //   game: game,
-                // ),
-                const SizedBox(height: 20),
-                const Text(
-                  'HIGHEST SCORE',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                GameScore(
+                  game: game,
                 ),
-                const SizedBox(height: 10),
-             //   const GameHighestScore(),
+                const SizedBox(height: 20),
+              //   const Text(
+              //     'HIGHEST SCORE',
+              //     style: TextStyle(fontSize: 18, color: Colors.white),
+              //   ),
+              //   const SizedBox(height: 10),
+              //  const GameHighestScore(),
                 const SizedBox(height: 20),
                 GameButton(
                   onPressed: () {
