@@ -113,7 +113,7 @@ class Brick extends PositionComponent with CollisionCallbacks, HasGameRef<Bricks
   void handleCollision() {
     if (brickText.text == brickRowRemoverText) {
       gameRef.removeBrickLayerRow(brickRow);
-      //  FlameAudio.play(brickRowRemoverAudio);
+       FlameAudio.play(brickRowRemoverAudio);
       return;
     }
     if (brickText.text == brickColumnRemoverText) {
