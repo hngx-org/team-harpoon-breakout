@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:team_harpoon_breakout/bricks_breaker_game.dart';
-import 'package:team_harpoon_breakout/screens/game_screen.dart';
 
 class Menu extends StatelessWidget {
   static String route = '/';
@@ -47,7 +46,8 @@ class Menu extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.5,
             ),
             GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(BricksBreakerGame.route),
+              onTap: () =>
+                  Navigator.of(context).pushNamed(BricksBreakerGame.route),
               child: Container(
                 padding: const EdgeInsets.all(5),
                 margin: const EdgeInsets.only(bottom: 20),

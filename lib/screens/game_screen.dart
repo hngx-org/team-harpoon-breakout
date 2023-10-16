@@ -1,17 +1,12 @@
-// import 'package:flame/game.dart';
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:team_harpoon_breakout/audio/game_audio.dart';
-// import 'package:team_harpoon_breakout/audio/game_audio.dart';
 import 'package:team_harpoon_breakout/game_functions/start_game.dart';
 import 'package:team_harpoon_breakout/game_widgets/ball.dart';
-// import 'package:team_harpoon_breakout/game_widgets/bricks.dart';
 import 'package:team_harpoon_breakout/game_widgets/player.dart';
 import 'package:team_harpoon_breakout/provider/game_states.dart';
 import 'package:team_harpoon_breakout/screens/bricks.dart';
-import 'package:team_harpoon_breakout/screens/gamePauseScreen.dart';
+import 'package:team_harpoon_breakout/screens/game_pause_screen.dart';
 import 'package:team_harpoon_breakout/screens/gameoverscreen.dart';
 
 class GameScreen extends ConsumerStatefulWidget {
@@ -85,7 +80,8 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                 const GamePauseScreen(),
 
                 // Game ball
-                Ball(ballpositionX: ballpositionX, ballpositionY: ballpositionY),
+                Ball(
+                    ballpositionX: ballpositionX, ballpositionY: ballpositionY),
 
                 // Player
                 Player(playerWidth: playerWidthState, playerX: playerX),
