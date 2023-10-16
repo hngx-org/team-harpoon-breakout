@@ -1,4 +1,3 @@
-
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:team_harpoon_breakout/bricks_breaker.dart';
@@ -20,8 +19,9 @@ class GameTopBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
+            tooltip: "pause game",
             icon: const Icon(
-              Icons.settings,
+              Icons.pause,
               size: 32,
             ),
             onPressed: () {
@@ -32,6 +32,7 @@ class GameTopBar extends StatelessWidget {
             game: game,
           ),
           IconButton(
+            tooltip: "increase ball speed",
             icon: const Icon(
               Icons.bolt,
               size: 32,

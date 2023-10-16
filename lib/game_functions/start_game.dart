@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:team_harpoon_breakout/audio/game_audio.dart';
 import 'package:team_harpoon_breakout/provider/game_states.dart';
 
 // callback to start the game
@@ -11,7 +9,7 @@ void startGame(
 ) async {
   ref.read(hasGameInitiated.notifier).state = true;
 
-  print(ref.watch(gameResume));
+  // print(ref.watch(gameResume));
   if (ref.watch(gameResume)) {
     ref.read(gameResume.notifier).state = false;
     init(ref);
@@ -32,14 +30,13 @@ void init(
     if (ref.watch(levelCompleted)) {
       timer.cancel();
       ref.read(isGameOver.notifier).state = true;
-     // GameAudio.gameEnd();
+      // GameAudio.gameEnd();
       resetGame(ref);
     }
 
     if (ref.watch(gamePaused)) {
       timer.cancel();
     }
-
 
     ///Check if game is over
     if (isPlayerDead(ref)) {
