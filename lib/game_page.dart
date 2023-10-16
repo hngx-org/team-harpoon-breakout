@@ -1,10 +1,8 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:team_harpoon_breakout/audio/game_audio.dart';
 import 'package:team_harpoon_breakout/bricks_breaker.dart';
 import 'package:team_harpoon_breakout/provider/game_states.dart';
 import 'package:team_harpoon_breakout/utils/constants.dart';
-import 'package:team_harpoon_breakout/widgets/game_button.dart';
 import 'package:team_harpoon_breakout/widgets/game_over.dart';
 import 'package:team_harpoon_breakout/widgets/game_pause.dart';
 import 'package:team_harpoon_breakout/widgets/game_top_bar.dart';
