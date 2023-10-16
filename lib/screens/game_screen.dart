@@ -69,7 +69,6 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             ),
             child: Stack(
               children: [
-                // GameWidget(game: GameAudio()),
                 // Start game
                 PlayScreen(hasGameInitiated: hasGameStarted),
 
@@ -105,21 +104,19 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                     height: 15,
                   ),
                 ),
-                Container(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: myBrick.length,
-                    itemBuilder: (context, index) {
-                      return MyBrick(
-                        brickH: brickH,
-                        brickW: brickW,
-                        brickx: myBrick[index][0],
-                        bricky: myBrick[index][1],
-                        brickBroken: myBrick[index][2],
-                        bricksPerRow: 4,
-                      );
-                    },
-                  ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: myBrick.length,
+                  itemBuilder: (context, index) {
+                    return MyBrick(
+                      brickH: brickH,
+                      brickW: brickW,
+                      brickx: myBrick[index][0],
+                      bricky: myBrick[index][1],
+                      brickBroken: myBrick[index][2],
+                      bricksPerRow: 4,
+                    );
+                  },
                 ),
                 // ListView(
                 //   shrinkWrap: true,
